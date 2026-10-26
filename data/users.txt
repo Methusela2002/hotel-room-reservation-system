@@ -1,0 +1,2 @@
+U001|ADMIN|System Admin|admin@hotel.com|admin123|0770000001
+U002|CUSTOMER|Kasun Perera|kasun@gmail.com|pass1234|0771234567
