@@ -41,6 +41,8 @@
         </div>
     </div>
     <a href="search-rooms" class="btn btn-primary mt-3">Find another room</a>
+    <a href="my-bookings" class="btn btn-outline-primary mt-3 ms-2">My bookings</a>
+
 </div>
 </body>
 </html>

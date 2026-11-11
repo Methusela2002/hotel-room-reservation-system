@@ -23,6 +23,8 @@
     <h3>Welcome, <c:out value="${sessionScope.loggedUser.fullName}"/></h3>
     <p class="text-muted">Find a room for your stay.</p>
     <a href="search-rooms" class="btn btn-primary">Find a room</a>
+    <a href="my-bookings" class="btn btn-outline-primary ms-2">My bookings</a>
+
 
 </div>
 </body>

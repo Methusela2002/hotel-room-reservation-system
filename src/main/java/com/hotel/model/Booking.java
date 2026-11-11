@@ -41,6 +41,11 @@ public class Booking {
         return CONFIRMED.equals(status);
     }
 
+    // A booking can be cancelled while it is confirmed and has not started yet
+    public boolean isCancellable() {
+        return isActive() && checkIn.isAfter(LocalDate.now());
+    }
+
     // True when this booking blocks the room for any night of [from, to)
     public boolean overlaps(LocalDate from, LocalDate to) {
         return isActive() && checkIn.isBefore(to) && from.isBefore(checkOut);

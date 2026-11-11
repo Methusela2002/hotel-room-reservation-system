@@ -30,6 +30,21 @@ public class BookingRepositoryDemo {
 
         System.out.println("--- BOOKED ROOM IDS for 11-12 Jan ---");
         System.out.println(repo.findBookedRoomIds(d.plusDays(1), d.plusDays(2)));
+        System.out.println("--- CANCEL B001 ---");
+        try {
+            repo.cancel("B001", "U999");
+        } catch (IllegalArgumentException e) {
+            System.out.println("Other user -> REJECTED: " + e.getMessage());
+        }
+        repo.cancel("B001", "U002");
+        System.out.println("Owner cancelled B001. Booked ids for 11-12 Jan: "
+                + repo.findBookedRoomIds(d.plusDays(1), d.plusDays(2)));
+        try {
+            repo.cancel("B001", "U002");
+        } catch (IllegalArgumentException e) {
+            System.out.println("Cancel again -> REJECTED: " + e.getMessage());
+        }
+
 
         System.out.println("--- ALL ---");
         for (Booking b : repo.findAll()) {

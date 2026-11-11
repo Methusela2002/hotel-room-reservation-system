@@ -85,7 +85,44 @@ public class BookingRepository {
         }
     }
 
+        // ---------- UPDATE (cancel) ----------
+
+    // userId = the customer cancelling their own booking; null = admin (no owner check)
+    public Booking cancel(String bookingId, String userId) throws IOException {
+        synchronized (WRITE_LOCK) {
+            List<Booking> bookings = findAll();
+
+            Booking target = null;
+            for (Booking b : bookings) {
+                if (b.getId().equals(bookingId)) {
+                    target = b;
+                    break;
+                }
+            }
+            if (target == null || (userId != null && !target.getUserId().equals(userId))) {
+                throw new IllegalArgumentException("Booking not found");
+            }
+            if (!target.isActive()) {
+                throw new IllegalArgumentException("This booking is already cancelled");
+            }
+            if (!target.isCancellable()) {
+                throw new IllegalArgumentException("Bookings that have already started cannot be cancelled");
+            }
+
+            target.setStatus(Booking.CANCELLED);
+            writeBookings(bookings);
+            return target;
+        }
+    }
+
     // ---------- helpers ----------
+    private void writeBookings(List<Booking> bookings) throws IOException {
+        List<String> lines = new ArrayList<>();
+        for (Booking b : bookings) {
+            lines.add(b.toFileString());
+        }
+        FileHandler.writeAllLines(FILE, lines);
+    }
 
     // B001, B002, ... highest existing number + 1
     private String nextId() throws IOException {
