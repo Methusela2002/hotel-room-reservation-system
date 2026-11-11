@@ -14,7 +14,10 @@
 <body class="bg-light">
 <nav class="navbar navbar-dark bg-primary px-3">
     <span class="navbar-brand">Hotel Reservation</span>
-    <a href="logout" class="btn btn-outline-light btn-sm">Logout</a>
+    <div>
+        <a href="profile" class="btn btn-outline-light btn-sm me-2">My profile</a>
+        <a href="logout" class="btn btn-outline-light btn-sm">Logout</a>
+    </div>
 </nav>
 <div class="container py-4">
     <h3>Welcome, <c:out value="${sessionScope.loggedUser.fullName}"/></h3>

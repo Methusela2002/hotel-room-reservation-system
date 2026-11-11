@@ -18,7 +18,9 @@
 </nav>
 <div class="container py-4">
     <h3>Admin dashboard</h3>
-    <p class="text-muted">Signed in as <c:out value="${sessionScope.loggedUser.fullName}"/>. User and room management will appear here soon.</p>
+    <p class="text-muted">Signed in as <c:out value="${sessionScope.loggedUser.fullName}"/>.</p>
+    <a href="admin-users" class="btn btn-primary me-2">Manage users</a>
+    <a href="profile" class="btn btn-outline-secondary">My profile</a>
 </div>
 </body>
 </html>
