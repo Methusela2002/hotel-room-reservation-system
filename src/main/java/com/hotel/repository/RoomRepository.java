@@ -62,6 +62,27 @@ public class RoomRepository {
         return results;
     }
 
+    // Rooms that are in service, of the wanted type (empty = any) and large enough.
+    // Step 11 will also exclude rooms that already have a booking for the dates.
+    public List<Room> findAvailable(String type, int guests) throws IOException {
+        String wantedType = type == null ? "" : type.trim().toUpperCase();
+
+        List<Room> results = new ArrayList<>();
+        for (Room room : findAll()) {
+            if (!room.isInService()) {
+                continue;
+            }
+            if (!wantedType.isEmpty() && !room.getType().equals(wantedType)) {
+                continue;
+            }
+            if (room.getCapacity() < guests) {
+                continue;
+            }
+            results.add(room);
+        }
+        return results;
+    }
+
     // ---------- CREATE ----------
 
     public Room save(Room room) throws IOException {

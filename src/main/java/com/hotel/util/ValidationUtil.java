@@ -1,4 +1,5 @@
 package com.hotel.util;
+import java.time.LocalDate;
 
 public final class ValidationUtil {
 
@@ -19,6 +20,25 @@ public final class ValidationUtil {
     public static String passwordError(String password) {
         if (password == null || password.length() < 6) {
             return "Password must be at least 6 characters";
+        }
+        return null;
+    }
+    // Returns an error message, or null when the stay is valid
+    public static String stayError(LocalDate checkIn, LocalDate checkOut, int guests) {
+        if (checkIn == null || checkOut == null) {
+            return "Check-in and check-out dates are required";
+        }
+        if (checkIn.isBefore(LocalDate.now())) {
+            return "Check-in date cannot be in the past";
+        }
+        if (!checkOut.isAfter(checkIn)) {
+            return "Check-out must be after check-in";
+        }
+        if (checkIn.plusDays(30).isBefore(checkOut)) {
+            return "A stay cannot be longer than 30 nights";
+        }
+        if (guests < 1 || guests > 10) {
+            return "Guests must be between 1 and 10";
         }
         return null;
     }

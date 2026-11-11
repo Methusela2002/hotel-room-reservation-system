@@ -21,7 +21,9 @@
 </nav>
 <div class="container py-4">
     <h3>Welcome, <c:out value="${sessionScope.loggedUser.fullName}"/></h3>
-    <p class="text-muted">Room search and bookings will appear here soon.</p>
+    <p class="text-muted">Find a room for your stay.</p>
+    <a href="search-rooms" class="btn btn-primary">Find a room</a>
+
 </div>
 </body>
 </html>
