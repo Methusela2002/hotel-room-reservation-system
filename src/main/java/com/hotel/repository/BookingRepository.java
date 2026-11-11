@@ -65,6 +65,18 @@ public class BookingRepository {
         return true;
     }
 
+    // True if the room has a confirmed booking that has not finished yet.
+    // Used to block deleting a room that guests still expect to use.
+    public boolean hasActiveFutureBookings(String roomId) throws IOException {
+        LocalDate today = LocalDate.now();
+        for (Booking b : findAll()) {
+            if (b.getRoomId().equals(roomId) && b.isActive() && b.getCheckOut().isAfter(today)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     // ---------- CREATE ----------
 
     // The overlap check is repeated inside the lock, so two customers

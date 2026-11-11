@@ -14,10 +14,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+import com.hotel.repository.BookingRepository;
+
+
 @WebServlet("/admin-rooms")
 public class AdminRoomServlet extends HttpServlet {
 
     private final RoomRepository roomRepository = new RoomRepository();
+    private final BookingRepository bookingRepository = new BookingRepository();
+
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)

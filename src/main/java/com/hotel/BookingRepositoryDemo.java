@@ -45,6 +45,10 @@ public class BookingRepositoryDemo {
             System.out.println("Cancel again -> REJECTED: " + e.getMessage());
         }
 
+        System.out.println("--- ROOM DELETE RULE ---");
+        System.out.println("R001 has active future bookings: " + repo.hasActiveFutureBookings("R001"));
+        System.out.println("R002 has active future bookings: " + repo.hasActiveFutureBookings("R002"));
+
 
         System.out.println("--- ALL ---");
         for (Booking b : repo.findAll()) {

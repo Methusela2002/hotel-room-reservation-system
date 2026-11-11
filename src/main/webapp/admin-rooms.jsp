@@ -31,7 +31,8 @@
     <c:if test="${param.msg == 'deleted'}"><div class="alert alert-success">Room deleted.</div></c:if>
     <c:if test="${param.msg == 'maintenance'}"><div class="alert alert-warning">Room moved to maintenance.</div></c:if>
     <c:if test="${param.msg == 'inservice'}"><div class="alert alert-success">Room is back in service.</div></c:if>
-    <c:if test="${param.err == 'notfound'}"><div class="alert alert-danger">Room not found.</div></c:if>
+    <c:if test="${param.err == 'hasbookings'}"><div class="alert alert-danger">This room has active upcoming bookings and cannot be deleted. Cancel those bookings first, or put the room in maintenance.</div></c:if>
+
 
     <form method="get" action="admin-rooms" class="row g-2 mb-3">
         <div class="col-sm-6 col-md-5">
